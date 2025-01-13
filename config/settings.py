@@ -38,6 +38,8 @@ CSRF_TRUSTED_ORIGINS = ['https://*.codeinstitute-ide.net', 'https://*.herokuapp.
 # Application definition
 
 INSTALLED_APPS = [
+    'inventory',
+    'users;',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
