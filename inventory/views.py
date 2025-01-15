@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, View
 from django.contrib.auth import authenticate, login
+from .forms import UserRegisterForm  # Add this line to import UserRegisterForm
 
 # Create your views here.
 
@@ -13,7 +14,7 @@ class SignUpView(View):
         return render(request, 'inventory/signup.html', {'form': form})
 
     def post(self, request):
-        form = userRegisterForm(request.POST)
+        form = UserRegisterForm(request.POST)
 
         if form.is_valid():
             form.save()
