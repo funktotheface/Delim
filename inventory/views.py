@@ -50,6 +50,6 @@ class AddItem(LoginRequiredMixin, CreateView):
         return context
             
     def form_valid(self, form):
-        form.instancee.user = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
