@@ -8,6 +8,10 @@ from .forms import UserRegisterForm  # Add this line to import UserRegisterForm
 class Index(TemplateView):
     template_name = 'inventory/index.html'
 
+class Dashboard(View):
+    def get(self, request):
+        return render(request, 'inventory/dashboard.html')
+
 class SignUpView(View):
     def get(self, request):
         form = UserRegisterForm()
