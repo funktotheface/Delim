@@ -12,7 +12,7 @@ class UserRegisterForm(UserCreationForm):
 
 class InventoryItemForm(forms.ModelForm):
     category = forms.ModelChoiceField(queryset=Category.objects.all(), initial=0)
-    expiry_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))  # Add this line
+    expiry_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     class Meta:
         model = InventoryItem
         fields = ['name', 'quantity', 'category', 'expiry_date']
