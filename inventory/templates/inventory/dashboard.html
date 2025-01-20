@@ -7,6 +7,20 @@
             <a href="{% url 'add-item' %}" class="btn btn-primary">+</a>
         </div>
 
+        {% if expiring_items %}
+
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <h4 class="alkert-heading">Expiring Soon!</h4>
+            <ul>
+                {% for item in expiring_items %}
+                <li>{{ item.name }} - {{ item.expiry_date }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+
         <table class="table table-hover table-striped">
             <thead>
                 <tr>
