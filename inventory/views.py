@@ -5,9 +5,14 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UserRegisterForm, InventoryItemForm # Add this line to import UserRegisterForm
 from .models import InventoryItem, Category
-
+from datetime import datetime, timedelta
 
 # Create your views here.
+
+def get_expiring_items(user):
+    today = datetime.now().date()
+    three_days_later = today + timedelta(days=3)
+    return InventoryItem.objects.filter(user=user, expiry_date__range=[today, three_days_later])
 
 class Index(TemplateView):
     template_name = 'inventory/index.html'
@@ -15,8 +20,9 @@ class Index(TemplateView):
 class Dashboard(LoginRequiredMixin, View):
     def get(self, request):
         items = InventoryItem.objects.filter(user=self.request.user.id).order_by('id')
+        expiring_items = get_expiring_items(self.request.user)
 
-        return render(request, 'inventory/dashboard.html', {'items': items})
+        return render(request, 'inventory/dashboard.html', {'items': items, 'expiring_items': expiring_items})
 
 class SignUpView(View):
     def get(self, request):
@@ -64,4 +70,7 @@ class DeleteItem(LoginRequiredMixin, DeleteView):
     template_name = 'inventory/delete_item.html'
     success_url = reverse_lazy('dashboard')
     context_object_name = 'item'
+
+
+
 
