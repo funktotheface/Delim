@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, View, CreateView
+from django.views.generic import TemplateView, View, CreateView, UpdateView
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UserRegisterForm, InventoryItemForm # Add this line to import UserRegisterForm
@@ -52,4 +52,11 @@ class AddItem(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+class EditItem(LoginRequiredMixin, UpdateView):
+    model = InventoryItem
+    form_class = InventoryItemForm
+    template_name = 'inventory/add_item.html'
+    success_url = reverse_lazy('dashboard')
+    
 
