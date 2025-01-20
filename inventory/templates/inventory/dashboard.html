@@ -16,6 +16,7 @@
                     <th scope="col">Category</th>
                     <th scope="col">Expiry Date</th>
                     <th scope="col">Date Added</th>
+                    <th></th>
                 
                 </tr>
             </thead>
@@ -40,6 +41,7 @@
                     <td>{{ item.category.name }}</td>
                     <td>{{ item.expiry_date }}</td>
                     <td>{{ item.date_created }}</td>
+                    <td><a href="{% url 'edit-item' item.id %}">EDIT</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
