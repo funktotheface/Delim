@@ -11,8 +11,9 @@ class UserRegisterForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 class InventoryItemForm(forms.ModelForm):
-    category = forms.ModelChoiceField(queryset=Category.objects.all(), initial=0)
+    new_category = forms.CharField(required=False, label='New Category')
+    category = forms.ModelChoiceField(queryset=Category.objects.all(), required=False, label='Existing Category')
     expiry_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     class Meta:
         model = InventoryItem
-        fields = ['name', 'quantity', 'category', 'expiry_date']
+        fields = ['name', 'quantity', 'category', 'new_category', 'expiry_date']

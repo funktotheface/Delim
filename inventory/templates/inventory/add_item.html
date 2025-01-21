@@ -18,5 +18,22 @@
             </form>
         </div>
     </div>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categorySelect = document.getElementById('id_category');
+            const newCategoryInput = document.getElementById('id_new_category');
+    
+            function toggleNewCategoryInput() {
+                if (categorySelect.value) {
+                    newCategoryInput.value = '';
+                    newCategoryInput.disabled = true;
+                } else {
+                    newCategoryInput.disabled = false;
+                }
+            }
+    
+            categorySelect.addEventListener('change', toggleNewCategoryInput);
+            toggleNewCategoryInput();
+        });
+    </script>
 {% endblock content %}
