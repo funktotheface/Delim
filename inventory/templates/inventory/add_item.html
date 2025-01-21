@@ -21,14 +21,15 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const categorySelect = document.getElementById('id_category');
-            const newCategoryInput = document.getElementById('id_new_category');
+            const newCategoryInput = document.getElementById('div_id_new_category');
+            
     
             function toggleNewCategoryInput() {
-                if (categorySelect.value) {
+                if (categorySelect.value) {               
                     newCategoryInput.value = '';
-                    newCategoryInput.disabled = true;
+                    newCategoryInput.style.display = 'none';
                 } else {
-                    newCategoryInput.disabled = false;
+                    newCategoryInput.style.display = 'block';
                 }
             }
     
