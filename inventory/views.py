@@ -56,6 +56,12 @@ class AddItem(LoginRequiredMixin, CreateView):
         return context
             
     def form_valid(self, form):
+        new_category_name = form.cleaned_data.get('new_category')
+        if new_category_name:
+            category, created = Category.objects.get_or_create(name=new_category_name)
+            form.instance.category = category
+        else:
+            form.instance.category = form.cleaned_data.get('category')
         form.instance.user = self.request.user
         return super().form_valid(form)
 
