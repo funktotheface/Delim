@@ -51,7 +51,7 @@
                         </tr>
                         {% endif %}
                         {% for item in items %}
-                        <tr>
+                        <tr class="{% if item.expiry_date <= Expired %}table-danger{% endif %}">
                             <!-- <th scope="row">{{ item.id }}</th> -->
                             <td>{{ item.name }}</td>
                             <td>{{ item.quantity }}</td>
