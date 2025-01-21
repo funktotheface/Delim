@@ -73,6 +73,15 @@ class EditItem(LoginRequiredMixin, UpdateView):
     form_class = InventoryItemForm
     template_name = 'inventory/add_item.html'
     success_url = reverse_lazy('dashboard')
+
+    def form_valid(self, form):
+        new_category_name = form.cleaned_data.get('new_category')
+        if new_category_name:
+            category, created = Category.objects.get_or_create(name=new_category_name)
+            form.instance.category = category
+        else:
+            form.instance.category = form.cleaned_data.get('category')
+        return super().form_valid(form)
     
 class DeleteItem(LoginRequiredMixin, DeleteView):
     model = InventoryItem
