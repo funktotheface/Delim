@@ -5,7 +5,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UserRegisterForm, InventoryItemForm # Add this line to import UserRegisterForm
 from .models import InventoryItem, Category
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
+
 
 # Create your views here.
 
@@ -21,8 +22,11 @@ class Dashboard(LoginRequiredMixin, View):
     def get(self, request):
         items = InventoryItem.objects.filter(user=self.request.user.id).order_by('id')
         expiring_items = get_expiring_items(self.request.user)
+        Expired = date.today()
+        print(Expired)
+        print(Expired)
 
-        return render(request, 'inventory/dashboard.html', {'items': items, 'expiring_items': expiring_items})
+        return render(request, 'inventory/dashboard.html', {'items': items, 'expiring_items': expiring_items, 'Expired': Expired})
 
 class SignUpView(View):
     def get(self, request):
