@@ -13,7 +13,7 @@ class UserRegisterForm(UserCreationForm):
 class InventoryItemForm(forms.ModelForm):
     new_category = forms.CharField(required=False, label='New Category')
     category = forms.ModelChoiceField(queryset=Category.objects.all(), required=False, label='Existing Category')
-    expiry_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    expiry_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=False) 
     class Meta:
         model = InventoryItem
         fields = ['name', 'quantity', 'category', 'new_category', 'expiry_date']
