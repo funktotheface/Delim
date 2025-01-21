@@ -17,3 +17,11 @@ class InventoryItemForm(forms.ModelForm):
     class Meta:
         model = InventoryItem
         fields = ['name', 'quantity', 'category', 'new_category', 'expiry_date']
+
+    def clean(self):
+        cleaned_data = super().clean()
+        new_category_name = cleaned_data.get('new_category')
+        if new_category_name:
+            if Category.objects.filter(name=new_category_name).exists():
+                self.add_error('new_category', 'Category with this name already exists.')
+        return cleaned_data

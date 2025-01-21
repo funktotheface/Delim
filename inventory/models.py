@@ -17,7 +17,7 @@ class InventoryItem(models.Model):
         return self.name    
     
 class Category(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
 
     class Meta: 
         verbose_name_plural = "Categories"  
