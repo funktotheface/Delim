@@ -32,7 +32,7 @@
                             <th scope="col">Qty</th>
                             <th scope="col">Category</th>
                             <th scope="col">Expiry Date</th>
-                            <th scope="col">Date Added</th>
+                            <!-- <th scope="col">Date Added</th> -->
                             
                         
                         </tr>
@@ -56,10 +56,10 @@
                             <td>{{ item.name }}</td>
                             <td>{{ item.quantity }}</td>
                             <td>{{ item.category.name }}</td>
-                            <td>{{ item.expiry_date }}</td>
-                            <td>{{ item.date_created }}</td>
-                            <td><a href="{% url 'edit-item' item.id %}" class="btn btn-outline-secondary">Edit</a></td>
-                            <td><a href="{% url 'delete-item' item.id %}" class="btn btn-outline-danger">Delete</a></td>
+                            <td>{{ item.expiry_date|date:"d/m/y" }}</td>
+                            <!-- <td>{{ item.date_created }}</td> -->
+                            <td><a href="{% url 'edit-item' item.id %}" class="btn btn-outline-secondary"><i class="bi bi-pencil"></i></a></td>
+                            <td><a href="{% url 'delete-item' item.id %}" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
