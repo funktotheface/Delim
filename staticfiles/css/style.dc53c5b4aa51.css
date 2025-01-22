@@ -1,0 +1,7 @@
+@media only screen and (max-width: 600px){
+    #edit-btn {
+        font-size: 12px !important; /* Adjust the font size */
+        padding: 5px 10px !important; /* Adjust the padding */
+        width: 80% !important; /* Adjust the width */
+    }
+}
