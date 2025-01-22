@@ -1,0 +1,6 @@
+ #edit-btn.btn-outline-secondary {
+    color:blueviolet !important; /* Adjust the color */
+        font-size: 50px !important; /* Adjust the font size */
+        padding: 5px 10px !important; /* Adjust the padding */
+        width: 80% !important; /* Adjust the width */
+    }

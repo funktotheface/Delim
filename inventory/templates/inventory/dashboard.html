@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content%}
+<!-- <img src="{% static 'images/testimg.gif' %}" alt=""> -->
 <div class="row">
     <div class="col-md-10 col-12 mx-auto mt-5">
         <div class="d-flex justify-content-end">
@@ -31,7 +32,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Qty</th>
                             <th scope="col">Category</th>
-                            <th scope="col">Expiry Date</th>
+                            <th scope="col">Exp Date</th>
                             <!-- <th scope="col">Date Added</th> -->
                             
                         
@@ -58,8 +59,8 @@
                             <td>{{ item.category.name }}</td>
                             <td>{{ item.expiry_date|date:"d/m/y" }}</td>
                             <!-- <td>{{ item.date_created }}</td> -->
-                            <td><a href="{% url 'edit-item' item.id %}" class="btn btn-outline-secondary"><i class="bi bi-pencil"></i></a></td>
-                            <td><a href="{% url 'delete-item' item.id %}" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a></td>
+                            <td><a href="{% url 'edit-item' item.id %}" id="edit-btn" class="btn btn-outline-secondary"><i class="bi bi-pencil"></i></a></td>
+                            <td><a href="{% url 'delete-item' item.id %}" id="del-btn" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
