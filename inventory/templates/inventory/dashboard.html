@@ -55,7 +55,7 @@
                         <tr class="{% if item.expiry_date <= Expired %}table-danger{% endif %}">
                             <!-- <th scope="row">{{ item.id }}</th> -->
                             <td>{{ item.name }}</td>
-                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.quantity }}{{ item.unit }}</td>
                             <td>{{ item.category.name }}</td>
                             <td>{{ item.expiry_date|date:"d/m/y" }}</td>
                             <!-- <td>{{ item.date_created }}</td> -->

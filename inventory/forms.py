@@ -14,9 +14,11 @@ class InventoryItemForm(forms.ModelForm):
     new_category = forms.CharField(required=False, label='New Category')
     category = forms.ModelChoiceField(queryset=Category.objects.all(), required=False, label='Existing Category')
     expiry_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=False) 
+    unit = forms.ChoiceField(choices=InventoryItem.UNIT_CHOICES, label='Unit')
+
     class Meta:
         model = InventoryItem
-        fields = ['name', 'quantity', 'category', 'new_category', 'expiry_date']
+        fields = ['name', 'quantity', 'unit', 'category', 'new_category', 'expiry_date']
 
     def clean(self):
         cleaned_data = super().clean()
