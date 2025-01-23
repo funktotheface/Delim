@@ -14,6 +14,37 @@
     <link rel="stylesheet" href="https://bootswatch.com/5/morph/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Document</title>
+
+    <!--TESTCSS-->
+    <style>
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .intro-logo use {
+            fill: rgb(255, 30, 0);
+            width: 200px;
+            height: 200px;
+            animation: fadeInOut 2s ease-in-out;
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        </style>
 </head>
 
 <body>
