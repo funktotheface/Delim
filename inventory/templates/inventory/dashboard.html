@@ -1,173 +1,165 @@
 {% extends 'inventory/base.html' %}
 {% load static %}
 
-{% block content%}
-<!-- <img src="{% static 'images/testimg.gif' %}" alt=""> -->
-
+{% block content %}
 
 <div class="row">
-    <div class="col-md-10 col-12 mx-auto mt-5">
-        <div class="d-flex justify-content-end">
-            <a href="{% url 'add-item' %}" class="btn btn-primary">+</a>
+    <div class="row">
+        <div class="col-md-10 col-12 mx-auto mt-5">
+            <div class="d-flex justify-content-end">
+                <a href="{% url 'add-item' %}" class="btn btn-primary">+</a>
+            </div>
+
+            {% if expiring_items %}
+            <div class="alert alert-warning alert-dismissible mt-3" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <h4 class="alert-heading">Expiring Soon!</h4>
+                <ul>
+                    {% for item in expiring_items %}
+                    <li>{{ item.name }} - {{ item.expiry_date }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
         </div>
+    </div>
 
-        {% if expiring_items %}
-
-        <div class="alert alert-warning alert-dismissible mt-3" role="alert">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            <h4 class="alkert-heading">Expiring Soon!</h4>
-            <ul>
-                {% for item in expiring_items %}
-                <li>{{ item.name }} - {{ item.expiry_date }}</li>
-                {% endfor %}
-            </ul>
+    <div class="container mt-5">
+        <div class="row mb-3">
+            <div class="col-md-4 position-relative">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search for item names..." onkeyup="searchTable()" style="display: none;">
+                <button id="closeSearch" class="btn btn-outline-secondary position-absolute top-0 end-0" style="display: none;" onclick="closeSearch()">×</button>
+            </div>
         </div>
-        {% endif %}
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <!-- <th scope="col">ID</th> -->
+                        <th scope="col" onclick="toggleSearch()">Name</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col" class="clickable" onclick="sortTable('category')">Category <i class="bi bi-arrow-down-up"></i></th>
+                        <th scope="col" class="clickable" onclick="sortTable('expiry_date')">Exp Date <i class="bi bi-arrow-down-up"></i></th>
+                        <th scope="col">edit</th>
+                        <th scope="col">delete</th>
+                        <!-- <th scope="col">Date Added</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if items|length == 0 %}
+                    <tr>
+                        <th scope="row">-</th> 
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    {% endif %}
+                    {% for item in items %}
+                    <tr class="{% if item.expiry_date <= Expired %}table-danger{% elif item.expiry_date < Expiring_Soon %}table-warning{% endif %}">
+                        <!-- <th scope="row">{{ item.id }}</th> -->
+                        <td class="item-name" title="{{ item.name}}"><a href="#" class="item-link" data-bs-toggle="modal" data-bs-target="#itemModal" 
+                            data-item-id="{{ item.id }}">{{ item.name }}</a></td>
+                        <td>{{ item.quantity }}{{ item.unit }}</td>
+                        <td class="category">{{ item.category.name }}</td>
+                        <td class="expiry_date">{{ item.expiry_date|date:"d/m/y" }}</td>
+                        <!-- <td>{{ item.date_created }}</td> -->
+                        <td><a href="{% url 'edit-item' item.id %}" id="edit-btn" class="btn btn-outline-secondary"><i class="bi bi-pencil"></i></a></td>
+                        <td><a href="{% url 'delete-item' item.id %}" id="del-btn" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    
-        <div class="container mt-5">            
-            <div class="table-responsive">
-                <table class="table table-hover table-striped">
-                    <thead>
-                        <tr>
-                            <!-- <th scope="col">ID</th> -->
-                            <th scope="col">Name</th>
-                            <th scope="col">Qty</th>
-                            <th scope="col" class="clickable" onclick="sortTable('category')">Category <i class="bi bi-arrow-down-up"></i></th>
-                            <th scope="col" class="clickable" onclick="sortTable('expiry_date')">Exp Date <i class="bi bi-arrow-down-up"></i></th>
-                            <th scope="col">edit</th>
-                            <th scope="col">delete</th>
-                            <!-- <th scope="col">Date Added</th> -->
-                            
-                        
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% if items|length == 0 %}
-                        <tr>
-                            <th scope="row">-</th> 
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            
-                            
-                        </tr>
-                        {% endif %}
-                        {% for item in items %}
-                        <tr class="{% if item.expiry_date <= Expired %}table-danger{% elif item.expiry_date < Expiring_Soon %}table-warning{% endif %}">
-                            <!-- <th scope="row">{{ item.id }}</th> -->
-                            <td class="item-name" title="{{ item.name}}"><a href="#" class="item-link" data-bs-toggle="modal" data-bs-target="#itemModal" 
-                                data-item-id="{{ item.id }}">{{ item.name }}</a></td>
-                            <td>{{ item.quantity }}{{ item.unit }}</td>
-                            <td class="category">{{ item.category.name }}</td>
-                            <td class="expiry_date">{{ item.expiry_date|date:"d/m/y" }}</td>
-                            <!-- <td>{{ item.date_created }}</td> -->
-                            <td><a href="{% url 'edit-item' item.id %}" id="edit-btn" class="btn btn-outline-secondary"><i class="bi bi-pencil"></i></a></td>
-                            <td><a href="{% url 'delete-item' item.id %}" id="del-btn" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+    <!-- Modal -->
+    <div class="modal fade" id="itemModal" tabindex="-1" aria-labelledby="itemModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="itemModalLabel">Item Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Modal content goes here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="itemModal"
-      tabindex="-1"
-      aria-labelledby="itemModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="itemModalLabel">Item Details</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <!-- Item details will be loaded here dynamically -->
-            <p>Loading...</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const itemLinks = document.querySelectorAll('.item-link');
-        const modalBody = document.querySelector('#itemModal .modal-body');
-        const modalTitle = document.querySelector('#itemModalLabel');
-    
-        itemLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                const itemId = this.dataset.itemId;
-    
-                // Clear previous modal content
-                modalBody.innerHTML = '<p>Loading...</p>';
-    
-                // Fetch item details via AJAX
-                fetch(`/items/${itemId}/details/`)
-                    .then(response => response.json())
-                    .then(data => {
-                        modalTitle.textContent = data.name;
-                        modalBody.innerHTML = `
-                            <p><strong>Quantity:</strong> ${data.quantity}${data.unit}</p>
-                            <p><strong>Category:</strong> ${data.category}</p>
-                            <p><strong>Expiry Date:</strong> ${data.expiry_date}</p>
-                        `;
-                    })
-                    .catch(error => {
-                        modalBody.innerHTML = '<p>Failed to load item details. Please try again later.</p>';
-                    });
-            });
-        });
+function toggleSearch() {
+    const searchInput = document.getElementById('searchInput');
+    const closeSearchButton = document.getElementById('closeSearch');
+    if (searchInput.style.display === 'none') {
+        searchInput.style.display = 'block';
+        closeSearchButton.style.display = 'block';
+        searchInput.focus();
+    } else {
+        searchInput.style.display = 'none';
+        closeSearchButton.style.display = 'none';
+        searchInput.value = '';
+        searchTable(); // Reset the table when search is hidden
+    }
+}
+
+function closeSearch() {
+    const searchInput = document.getElementById('searchInput');
+    const closeSearchButton = document.getElementById('closeSearch');
+    searchInput.style.display = 'none';
+    closeSearchButton.style.display = 'none';
+    searchInput.value = '';
+    searchTable(); // Reset the table when search is hidden
+}
+
+function searchTable() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const table = document.querySelector('table tbody');
+    const rows = table.querySelectorAll('tr');
+
+    rows.forEach(row => {
+        const itemName = row.querySelector('.item-name').textContent.toLowerCase();
+        if (itemName.includes(filter)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
+
+function sortTable(column) {
+    const table = document.querySelector('table tbody');
+    const rows = Array.from(table.querySelectorAll('tr')).filter(row => !row.querySelector('th'));
+
+    rows.sort((a, b) => {
+        const aCell = a.querySelector(`.${column}`);
+        const bCell = b.querySelector(`.${column}`);
+
+        if (!aCell || !bCell) {
+            return 0;
+        }
+
+        const aText = aCell.textContent.trim();
+        const bText = bCell.textContent.trim();
+
+        if (column === 'expiry_date') {
+            const aDate = new Date(aText.split('/').reverse().join('-'));
+            const bDate = new Date(bText.split('/').reverse().join('-'));
+            return aDate - bDate;
+        } else if (column === 'category') {
+            return aText.localeCompare(bText);
+        }
     });
 
+    rows.forEach(row => table.appendChild(row));
+}
 </script>
 
-
-
-    <script>
-        function sortTable(column) {
-            console.log(`Sorting by: ${column}`);
-            const table = document.querySelector('table tbody');
-            const rows = Array.from(table.querySelectorAll('tr')).filter(row => !row.querySelector('th'));
-        
-            rows.sort((a, b) => {
-                const aCell = a.querySelector(`.${column}`);
-                const bCell = b.querySelector(`.${column}`);
-        
-                if (!aCell || !bCell) return 0;
-        
-                const aText = aCell.textContent.trim();
-                const bText = bCell.textContent.trim();
-        
-                if (column === 'expiry_date') {
-                    const parseDate = (dateString) => {
-                        const [day, month, year] = dateString.split('/').map(Number);
-                        return new Date(year, month - 1, day); // Month is zero-based
-                    };
-        
-                    const aDate = parseDate(aText);
-                    const bDate = parseDate(bText);
-                    return aDate - bDate; // Sort by date
-                } else {
-                    return aText.localeCompare(bText); // Alphabetical sorting
-                }
-            });
-        
-            rows.forEach(row => table.appendChild(row)); // Append sorted rows
-        }
-        
-        </script>
-{% endblock content %}
+{% endblock %}
