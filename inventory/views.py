@@ -1,3 +1,7 @@
+import json
+import random
+from django.conf import settings
+import os
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, View, CreateView, UpdateView, DeleteView
@@ -10,6 +14,8 @@ from datetime import datetime, timedelta, date
 
 # Create your views here.
 
+    
+
 def get_expiring_items(user):
     today = datetime.now().date()
     three_days_later = today + timedelta(days=3)
@@ -17,6 +23,28 @@ def get_expiring_items(user):
 
 class Index(TemplateView):
     template_name = 'inventory/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        quotes_file_path = os.path.join(settings.BASE_DIR, 'quotes.json')
+
+        try:
+            with open(quotes_file_path, 'r') as file:
+                quotes = json.load(file)
+        except Exception as e:
+            quotes = []
+
+        if quotes:
+            random_quote = random.choice(quotes)
+            context['quote'] = random_quote['quote']
+            context['attributedTo'] = random_quote['attributedTo']
+        else:
+            context['quote'] = "No quotes available."
+            context['attributedTo'] = "Unknown"
+
+        return context
+
+    
 
 class Dashboard(LoginRequiredMixin, View):
     def get(self, request):
