@@ -184,15 +184,25 @@ td.item-name {
     transition: opacity 1s ease;
 }
 
+
 #intro-logo {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     
-
-    
 }
+
+#intro-logo path{
+  stroke-linecap: round;
+  stroke-linejoin: miter;
+  shape-rendering: geometricPrecision;
+  
+
+ 
+}
+
+
 #intro-logo path:nth-child(1) {
     stroke-dasharray: 566.783447265625px;
     stroke-dashoffset: 566.783447265625px;
