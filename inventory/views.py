@@ -7,13 +7,23 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, View, CreateView, UpdateView, DeleteView
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 from .forms import UserRegisterForm, InventoryItemForm # Add this line to import UserRegisterForm
 from .models import InventoryItem, Category
 from datetime import datetime, timedelta, date
 
 
 # Create your views here.
-
+def item_details(request, item_id):
+    item = get_object_or_404(InventoryItem, id=item_id)
+    data = {
+        'name': item.name,
+        'quantity': item.quantity,
+        'unit': item.unit,
+        'category': item.category.name,
+        'expiry_date': item.expiry_date.strftime('%d/%m/%Y'),
+    }
+    return JsonResponse(data)
     
 
 def get_expiring_items(user):
