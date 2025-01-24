@@ -22,7 +22,14 @@ table th.clickable:hover {
 
 
  
- 
+div #quote-container {
+  margin-top: 7rem;
+}
+
+div #quote-container q {
+  font-size: 1.5rem;
+  font-style: italic;
+}
  
  #text-container {
     z-index: 100;

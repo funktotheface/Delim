@@ -8,9 +8,6 @@
   <div>
     <div class="row">
       <div class="col-sm-11 col-md-4 mx-auto mt-5 px-3 text-center">
-        <q>{{ quote }}</q>
-        <br>
-        <cite>{{ attributedTo }}</cite>
         <h1 class="fw-light">Track and Manage Your Pantry</h1>
         <p class="fw-light">
           Keep track of your inventory and get alerts for expiring Items
@@ -19,6 +16,11 @@
         <div>
           <a href="{% url 'dashboard' %}" class="btn btn-primary">Get Started!</a>
         </div>
+        <div id="quote-container">
+          <q>{{ quote }}</q>
+          <br>
+          <cite>{{ attributedTo }}</cite>
+          </div>
       </div>
     </div>
   </div>
