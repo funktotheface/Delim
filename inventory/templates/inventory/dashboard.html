@@ -153,8 +153,12 @@ function sortTable(column) {
         const bText = bCell.textContent.trim();
 
         if (column === 'expiry_date') {
-            const aDate = new Date(aText.split('/').reverse().join('-'));
-            const bDate = new Date(bText.split('/').reverse().join('-'));
+            
+            const [aDay, aMonth, aYear] = aText.split('/');
+            const [bDay, bMonth, bYear] = bText.split('/');
+            const aDate = new Date(aYear, aMonth - 1, aDay);
+            const bDate = new Date(bYear, bMonth - 1, bDay);
+            
             return aDate - bDate;
         } else if (column === 'category') {
             return aText.localeCompare(bText);
