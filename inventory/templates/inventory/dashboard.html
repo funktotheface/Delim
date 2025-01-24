@@ -33,10 +33,10 @@
                             <!-- <th scope="col">ID</th> -->
                             <th scope="col">Name</th>
                             <th scope="col">Qty</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Exp Date</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
+                            <th scope="col" class="clickable" onclick="sortTable('category')">Category <i class="bi bi-arrow-down-up"></i></th>
+                            <th scope="col" class="clickable" onclick="sortTable('expiry_date')">Exp Date <i class="bi bi-arrow-down-up"></i></th>
+                            <th scope="col">edit</th>
+                            <th scope="col">delete</th>
                             <!-- <th scope="col">Date Added</th> -->
                             
                         
@@ -61,8 +61,8 @@
                             <td class="item-name" title="{{ item.name}}"><a href="#" class="item-link" data-bs-toggle="modal" data-bs-target="#itemModal" 
                                 data-item-id="{{ item.id }}">{{ item.name }}</a></td>
                             <td>{{ item.quantity }}{{ item.unit }}</td>
-                            <td>{{ item.category.name }}</td>
-                            <td>{{ item.expiry_date|date:"d/m/y" }}</td>
+                            <td class="category">{{ item.category.name }}</td>
+                            <td class="expiry_date">{{ item.expiry_date|date:"d/m/y" }}</td>
                             <!-- <td>{{ item.date_created }}</td> -->
                             <td><a href="{% url 'edit-item' item.id %}" id="edit-btn" class="btn btn-outline-secondary"><i class="bi bi-pencil"></i></a></td>
                             <td><a href="{% url 'delete-item' item.id %}" id="del-btn" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a></td>
@@ -134,4 +134,40 @@
     });
 
 </script>
+
+
+
+    <script>
+        function sortTable(column) {
+            console.log(`Sorting by: ${column}`);
+            const table = document.querySelector('table tbody');
+            const rows = Array.from(table.querySelectorAll('tr')).filter(row => !row.querySelector('th'));
+        
+            rows.sort((a, b) => {
+                const aCell = a.querySelector(`.${column}`);
+                const bCell = b.querySelector(`.${column}`);
+        
+                if (!aCell || !bCell) return 0;
+        
+                const aText = aCell.textContent.trim();
+                const bText = bCell.textContent.trim();
+        
+                if (column === 'expiry_date') {
+                    const parseDate = (dateString) => {
+                        const [day, month, year] = dateString.split('/').map(Number);
+                        return new Date(year, month - 1, day); // Month is zero-based
+                    };
+        
+                    const aDate = parseDate(aText);
+                    const bDate = parseDate(bText);
+                    return aDate - bDate; // Sort by date
+                } else {
+                    return aText.localeCompare(bText); // Alphabetical sorting
+                }
+            });
+        
+            rows.forEach(row => table.appendChild(row)); // Append sorted rows
+        }
+        
+        </script>
 {% endblock content %}
