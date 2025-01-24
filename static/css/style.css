@@ -1,11 +1,24 @@
-.table td, .table th {
+.table td {
   vertical-align: middle;
 }
   
 div.modal-backdrop {
     z-index: 0;}
  
- 
+
+  
+/* Add an underline to clickable table headers */
+table th.clickable {
+    text-decoration: underline;
+    cursor: pointer; /* Indicates it's clickable */
+}
+
+/* Add a hover effect to make it visually obvious */
+table th.clickable:hover {
+    color: #007bff; /* Matches the primary Bootstrap color */
+    text-decoration: none; /* Removes underline on hover */
+}
+
  
  
  
