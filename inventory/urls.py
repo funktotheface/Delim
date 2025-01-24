@@ -2,7 +2,10 @@ from django.contrib import admin
 from django.urls import path
 from .views import Index, SignUpView, Dashboard, AddItem, EditItem, DeleteItem
 from django.contrib.auth import views as auth_views
+
+from . import views
 urlpatterns = [
+    path('items/<int:item_id>/details/', views.item_details, name='item-details'),
     path('', Index.as_view(), name='index'),
     path('dashboard/', Dashboard.as_view(), name='dashboard'),
     path('add-item/', AddItem.as_view(), name='add-item'),

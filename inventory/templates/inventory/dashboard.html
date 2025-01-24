@@ -3,6 +3,8 @@
 
 {% block content%}
 <!-- <img src="{% static 'images/testimg.gif' %}" alt=""> -->
+
+
 <div class="row">
     <div class="col-md-10 col-12 mx-auto mt-5">
         <div class="d-flex justify-content-end">
@@ -56,7 +58,8 @@
                         {% for item in items %}
                         <tr class="{% if item.expiry_date <= Expired %}table-danger{% endif %}">
                             <!-- <th scope="row">{{ item.id }}</th> -->
-                            <td class="item-name" title="{{ item.name}}">{{ item.name }}</td>
+                            <td class="item-name" title="{{ item.name}}"><a href="#" class="item-link" data-bs-toggle="modal" data-bs-target="#itemModal" 
+                                data-item-id="{{ item.id }}">{{ item.name }}</a></td>
                             <td>{{ item.quantity }}{{ item.unit }}</td>
                             <td>{{ item.category.name }}</td>
                             <td>{{ item.expiry_date|date:"d/m/y" }}</td>
@@ -71,4 +74,64 @@
         </div>
     </div>
 </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="itemModal"
+      tabindex="-1"
+      aria-labelledby="itemModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="itemModalLabel">Item Details</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <!-- Item details will be loaded here dynamically -->
+            <p>Loading...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const itemLinks = document.querySelectorAll('.item-link');
+        const modalBody = document.querySelector('#itemModal .modal-body');
+        const modalTitle = document.querySelector('#itemModalLabel');
+    
+        itemLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                const itemId = this.dataset.itemId;
+    
+                // Clear previous modal content
+                modalBody.innerHTML = '<p>Loading...</p>';
+    
+                // Fetch item details via AJAX
+                fetch(`/items/${itemId}/details/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        modalTitle.textContent = data.name;
+                        modalBody.innerHTML = `
+                            <p><strong>Quantity:</strong> ${data.quantity}${data.unit}</p>
+                            <p><strong>Category:</strong> ${data.category}</p>
+                            <p><strong>Expiry Date:</strong> ${data.expiry_date}</p>
+                        `;
+                    })
+                    .catch(error => {
+                        modalBody.innerHTML = '<p>Failed to load item details. Please try again later.</p>';
+                    });
+            });
+        });
+    });
+
+</script>
 {% endblock content %}
