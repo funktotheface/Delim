@@ -275,7 +275,7 @@ td.item-name {
 
 
 
-@media screen and (max-width: 700px) {
+@media (min-width:382) and (max-width: 700px) {
 
     table {
         font-size: 0.75rem;
@@ -291,6 +291,27 @@ td.item-name {
 
     #nav-logo {
         max-width: 100px;
+        height: auto;
+ 
+    }
+    
+}
+
+@media (max-width: 381px) {
+
+    table {
+        font-size: 0.65rem;
+    }
+
+    #edit-btn.btn-outline-secondary,
+    #del-btn.btn-outline-danger {
+        font-size: 0.5rem;
+        padding: 5px 10px;
+    
+    }
+
+    #nav-logo {
+        max-width: 80px;
         height: auto;
  
     }
