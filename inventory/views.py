@@ -15,15 +15,16 @@ from datetime import datetime, timedelta, date
 
 # Create your views here.
 def item_details(request, item_id):
-    item = get_object_or_404(InventoryItem, id=item_id)
-    data = {
+    item = InventoryItem.objects.get(id=item_id)
+    response_data = {
         'name': item.name,
         'quantity': item.quantity,
         'unit': item.unit,
         'category': item.category.name,
-        'expiry_date': item.expiry_date.strftime('%d/%m/%Y'),
+        'expiry_date': item.expiry_date.strftime('%Y-%m-%d'),
+        'user': item.user.username
     }
-    return JsonResponse(data)
+    return JsonResponse(response_data)
     
 
 def get_expiring_items(user):
@@ -73,17 +74,13 @@ class SignUpView(View):
 
     def post(self, request):
         form = UserRegisterForm(request.POST)
-
         if form.is_valid():
-            form.save()
-            user = authenticate(
-                username=form.cleaned_data['username'],
-                password=form.cleaned_data['password1']
-            )
-
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('index')
-        
+            return redirect('dashboard')
         return render(request, 'inventory/signup.html', {'form': form})
     
 class AddItem(LoginRequiredMixin, CreateView):
