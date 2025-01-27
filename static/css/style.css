@@ -284,7 +284,7 @@ td.item-name {
 
     td > .edit-button,
     td > .delete-button {
-        color: blueviolet;
+        
         font-size: 0.75rem;
         padding: 5px 10px;
     
@@ -306,7 +306,7 @@ td.item-name {
 
     td > .edit-button,
     td > .delete-button {
-        color: chartreuse;
+        
         font-size: 0.5rem;
         padding: 5px 10px;
     
