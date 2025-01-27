@@ -68,8 +68,8 @@
                         <td class="category">{{ item.category.name }}</td>
                         <td class="expiry_date">{{ item.expiry_date|date:"d/m/y" }}</td>
                         <!-- <td>{{ item.date_created }}</td> -->
-                        <td><a href="{% url 'edit-item' item.id %}" id="edit-btn" class="btn btn-outline-secondary"><i class="bi bi-pencil"></i></a></td>
-                        <td><a href="{% url 'delete-item' item.id %}" id="del-btn" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a></td>
+                        <td><a href="{% url 'edit-item' item.id %}" class="edit-button btn btn-outline-secondary"><i class="bi bi-pencil"></i></a></td>
+                        <td><a href="{% url 'delete-item' item.id %}" class="delete-button btn btn-outline-danger"><i class="bi bi-trash"></i></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
