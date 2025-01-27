@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 class InventoryItem(models.Model):
@@ -12,15 +13,21 @@ class InventoryItem(models.Model):
         ('u', 'unit'),
         ('oz', 'ounces'),
     ]
-    name = models.CharField(max_length=200)
-    quantity = models.FloatField(
-        validators=[MinValueValidator(0.0), MaxValueValidator(1000.0)]
-    )
-    unit = models.CharField(max_length=2, choices=UNIT_CHOICES, default='u')
-    category = models.ForeignKey('Category', on_delete=models.SET_NULL, blank=True, null=True)
+    name = models.CharField(max_length=100)
+    quantity = models.FloatField()
+    unit = models.CharField(max_length=10, default='u')
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, blank=True, null=True)
     expiry_date = models.DateField(null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def clean(self):
+        if self.quantity < 0 or self.quantity > 1000:
+            raise ValidationError('Quantity must be between 0 and 1000')
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name    
