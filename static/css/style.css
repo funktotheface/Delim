@@ -282,8 +282,9 @@ td.item-name {
     }
 
 
-    #edit-btn.btn-outline-secondary,
-    #del-btn.btn-outline-danger {
+    td > .edit-button,
+    td > .delete-button {
+        color: blueviolet;
         font-size: 0.75rem;
         padding: 5px 10px;
     
@@ -303,8 +304,9 @@ td.item-name {
         font-size: 0.65rem;
     }
 
-    #edit-btn.btn-outline-secondary,
-    #del-btn.btn-outline-danger {
+    td > .edit-button,
+    td > .delete-button {
+        color: chartreuse;
         font-size: 0.5rem;
         padding: 5px 10px;
     
