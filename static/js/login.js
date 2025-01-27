@@ -1,3 +1,5 @@
+//this script prevents users from pressing the login button while the csrf token is being handled, whioch can cause a 403 error
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log('login.js loaded'); 
    

@@ -7,12 +7,12 @@
     <div class="row">
         <div class="col-md-10 col-12 mx-auto mt-5">
             <div class="d-flex justify-content-end">
-                <a href="{% url 'add-item' %}" class="btn btn-primary">+</a>
+                <a href="{% url 'add-item' %}" class="btn btn-primary" aria-label="Add Item">+</a>
             </div>
 
             {% if expiring_items %}
             <div class="alert alert-warning alert-dismissible mt-3 col-10 mx-auto" role="alert">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <button type="button" class="btn-close" aria-label="Dismiss Alert" data-bs-dismiss="alert"></button>
                 <h4 class="alert-heading">Expiring Soon!</h4>
                 <ul>
                     {% for item in expiring_items %}
@@ -78,7 +78,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="itemModal" tabindex="-1" aria-labelledby="itemModalLabel" aria-hidden="true">
+    <div class="modal fade" id="itemModal" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
