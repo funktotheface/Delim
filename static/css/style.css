@@ -318,6 +318,10 @@ td.item-name {
         height: auto;
  
     }
+
+    .form-control {
+        padding: 0;
+    }
     
 }
 
@@ -338,6 +342,10 @@ td.item-name {
         max-width: 80px;
         height: auto;
     }
+
+    .form-control {
+      padding: 0;
+  }
     
 }
 
