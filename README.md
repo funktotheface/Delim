@@ -1,131 +1,114 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# delim
 
-Welcome Douglas Mottershead,
+## Overview
+Delim is a sleek and user-friendly application designed to help users keep track of what’s in their kitchen and when it’s set to expire.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+The app addresses a common problem: not knowing what’s in your cupboards or fridge, leading to accidental food waste as items pass their expiration dates. By providing users with a simple, customizable database to manage their kitchen inventory, Delim empowers users to take control of their food storage, minimize waste, and save money.
 
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
+With Delim, users can easily:
 
-## Gitpod Reminders
+* Add items to their inventory with custom details like quantity and expiration dates.
+* view, edit, or delete items to keep their inventory up to date.
+* get insights on what needs to be used soon, ensuring that nothing goes to waste.
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## Table of Contents
+[Overview](#Overview)
+UX Design Process
+Link to User Stories
+Wireframes
+Accessibility
+Design Rationale
+Reasoning for Final Changes
+Key Features
+Implemented
+Deployment
+Deployment Overview
+Pre-Deployment Checklist
+Deploying to Platform
+Forking and Cloning the Repository
+Fork the Project
+Clone the Project
+Local Development Setup
+Environment Variables
+Database and Migrations
+Services Used
+Tech Stack
+AI Implementation and Orchestration
+Use Cases and Reflections
+Testing Summary
+Manual Testing
+Automated Testing
+Upcoming Features
 
-`python3 -m http.server`
 
-A blue button should appear to click: _Make Public_,
+## UX Design Process
+### User Stories
+I based my design around some core User Stories, the goal was to provide immediate access to the core functionality of the application in a smooth and user firnedly manner, while being aesthetically pleasing and unitrusive.
 
-Another blue button should appear to click: _Open Browser_.
+[Github User Stories Project Board](https://github.com/users/funktotheface/projects/7/views/1)
 
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
+### Wireframes:
+While my end project deviated considerably from my initial wireframes, I feel the core concepts are present and the scope for future features such as recipe suggestions was accounted for in the original design layout.
 
-A blue button should appear to click: _Make Public_,
 
-Another blue button should appear to click: _Open Browser_.
+<img src="readme images/delim readme resources/wireframes/Home Screen.png" alt="Home Screen Wireframe" width="500"/>
+<img src="readme images/delim readme resources/wireframes/Inventory Screen.png" alt="Inventory Screen Wireframe" width="500"/>
+<img src="readme images/delim readme resources/wireframes/Add_Edit Item.png" alt="Add / Edit Item Screen Wireframe" width="500"/>
+<img src="readme images/delim readme resources/wireframes/Recipes.png" alt="Recipes Screen Wireframe" width="500"/>
 
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
 
-To log into the Heroku toolbelt CLI:
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+Accessibility
+[Describe the steps taken to ensure your project is inclusive and accessible, such as navigation design, responsive layouts, WCAG adherence, etc.]
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
+Design Rationale
+[Discuss key design decisions such as layout, color schemes, typography, and how these align with your project's purpose and user needs.]
 
-### Connecting your Mongo database
+Key Features
+Implemented
+[List the main features of your project and how they function.]
 
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
+Deployment
+Deployment Overview
+[Provide a high-level summary of the deployment process.]
 
-------
+Pre-Deployment Checklist
+[Include a checklist of configurations needed before deployment, such as setting up environment variables and updating dependencies.]
 
-## Release History
+Deploying to Platform
+[Step-by-step instructions on how to deploy your project to the chosen platform.]
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+Forking and Cloning the Repository
+Fork the Project
+[Steps to fork the repository.]
 
-**June 18, 2024,** Add Mongo back into template
+Clone the Project
+[Steps to clone the repository locally.]
 
-**June 14, 2024,** Temporarily remove Mongo until the key issue is resolved
+Local Development Setup
+Environment Variables
+[Instructions on setting up environment variables.]
 
-**May 28 2024:** Fix Mongo and Links installs
+Database and Migrations
+[Steps to set up and migrate the database.]
 
-**April 26 2024:** Update node version to 16
+Services Used
+[List external services integrated into your project.]
 
-**September 20 2023:** Update Python version to 3.9.17.
+Tech Stack
+[List the technologies, frameworks, and tools used in your project.]
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+AI Implementation and Orchestration
+Use Cases and Reflections
+[Describe how AI tools were used during the development process and their impact on the project.]
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+Testing Summary
+Manual Testing
+[Summarize the results of manual testing, including devices, browsers, and features tested.]
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+Automated Testing
+[Summarize automated testing results, including tools and frameworks used.]
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+Upcoming Features
+[List features you plan to implement in future updates.]
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
