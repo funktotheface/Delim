@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, View, CreateView, UpdateView, DeleteView
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.http import JsonResponse
 from .forms import UserRegisterForm, InventoryItemForm # Add this line to import UserRegisterForm
 from .models import InventoryItem, Category
@@ -102,6 +103,8 @@ class AddItem(LoginRequiredMixin, CreateView):
         else:
             form.instance.category = form.cleaned_data.get('category')
         form.instance.user = self.request.user
+        
+        messages.success(self.request, 'Item added successfully')
         return super().form_valid(form)
 
 class EditItem(LoginRequiredMixin, UpdateView):
@@ -117,6 +120,8 @@ class EditItem(LoginRequiredMixin, UpdateView):
             form.instance.category = category
         else:
             form.instance.category = form.cleaned_data.get('category')
+
+        messages.success(self.request, 'Item updated successfully')
         return super().form_valid(form)
     
 class DeleteItem(LoginRequiredMixin, DeleteView):
@@ -124,6 +129,18 @@ class DeleteItem(LoginRequiredMixin, DeleteView):
     template_name = 'inventory/delete_item.html'
     success_url = reverse_lazy('dashboard')
     context_object_name = 'item'
+    
+
+    def form_valid(self, form):
+
+        # Add a success message
+        messages.success(self.request, 'Item has been successfully deleted!')
+
+        # Call the superclass delete method to actually delete the item
+        return super().form_valid(form)
+    
+
+
 
 
 

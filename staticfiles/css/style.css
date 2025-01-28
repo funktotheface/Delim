@@ -19,6 +19,10 @@ footer .container{
   
 }
 
+.fade-message {
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
 
 .table td {
   vertical-align: middle;

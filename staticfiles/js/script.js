@@ -118,3 +118,17 @@ function sortTable(column) {
             });
         });
     });
+    const messages = document.querySelectorAll('.fade-message');
+
+    // Loop through each message and add a fade-out effect after 3 seconds
+    messages.forEach((message) => {
+        setTimeout(() => {
+            message.style.transition = "opacity 1s";
+            message.style.opacity = 0;
+        }, 3000); // 3000ms = 3 seconds
+
+        // Optional: Remove the message from the DOM after the fade-out
+        setTimeout(() => {
+            message.remove();
+        }, 4000); // 4000ms = 1 second after fade-out starts
+    });
