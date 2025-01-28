@@ -1,5 +1,7 @@
  html, body {
-  height: 100vh;
+  overflow-x: hidden;
+  
+  
   
   
 } 
@@ -9,8 +11,10 @@ footer .container{
   text-align: center;
   position: fixed; 
   bottom: 0;
-  background-color: #be6161;
+  background-color: #ffffff;
   z-index: 1001;
+  margin-left: 12px;
+  
  
   
 }
