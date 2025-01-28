@@ -319,10 +319,15 @@ td.item-name {
  
     }
 
+
     .form-control {
         padding: 0;
     }
     
+    #sign-up-btn {
+        font-size: 0.75rem;
+        padding: 5px 10px;
+    }
 }
 
 @media (max-width: 381px) {
