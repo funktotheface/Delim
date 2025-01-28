@@ -1,15 +1,18 @@
-/* html, body {
+ html, body {
   height: 100vh;
   
-} */
+  
+} 
 
 
-footer .container {
+footer .container{
   text-align: center;
   position: fixed; 
   bottom: 0;
-  background-color: #ffffff;
-  padding: 1rem 0;
+  background-color: #be6161;
+  z-index: 1001;
+ 
+  
 }
 
 
