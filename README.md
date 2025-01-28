@@ -129,7 +129,7 @@ These design choices work together to create an unintimidating and enjoyable use
    - A sleek, animated site logo is presented on an introductory overlay, setting a polished and professional tone. This is created by embedding an svg into the html and animating it via CSS, JavaScript is also used to ensure that the animation is presented as an overlay to the page content, and that it only plays out on the first time a user vists the page per browsing session, this is to make sure users arent forced to watch a reptative animation while navigating the site. 
 
 - **Morphing Gradient Background:**  
-   - The app features a dynamic, morphing gradient background that enhances visual appeal without detracting from usability.  This was achieved by using a system of html elements and CSS manipulation. The feature does not function as a traditonal background and as such presented its own obstacles such as sizing and layering. Z index had to be taken into account for this feature. While iot is not perfectly implemented I am excited to continbue devloping this feature and refining its execution. 
+   - The app features a dynamic, morphing gradient background that enhances visual appeal without detracting from usability.  This was achieved by using a system of html elements and CSS manipulation. The feature does not function as a traditonal background and as such presented its own obstacles such as sizing and layering. Z index had to be taken into account for this feature. While it is not perfectly implemented I am excited to continbue devloping this feature and refining its execution. 
 
 - **Mobile-Friendly Design:**  
    - Fully responsive UI optimized for both desktop and mobile devices.  
