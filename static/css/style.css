@@ -320,7 +320,8 @@ td.item-name {
     }
 
 
-    .form-control {
+    .form-control,
+    .select {
         padding: 0;
     }
     
@@ -348,7 +349,8 @@ td.item-name {
         height: auto;
     }
 
-    .form-control {
+    .form-control
+    .select {
       padding: 0;
   }
     
