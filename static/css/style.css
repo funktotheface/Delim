@@ -9,7 +9,7 @@
 
 footer .container{
   text-align: center;
-  position: relative; 
+  position: fixed; 
   bottom: 0;
   background-color: #ffffff;
   z-index: 1001;
@@ -119,7 +119,7 @@ div #quote-container q {
     background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
     top: 0;
     left: 0;
-    padding-bottom: 2rem;
+    /* padding-bottom: 2rem; */
   }
   
   .gradient-bg svg {
