@@ -266,20 +266,193 @@ Follow these steps to deploy the app:
    
    For more details, refer to the [Django Deployment Checklist](https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/).
 
-Tech Stack
-[List the technologies, frameworks, and tools used in your project.]
+# Tech Stack
+The technologies used to create delim are:
+## Backend
+* Django 4.2
+* PostgreSQL
 
-AI Implementation and Orchestration
-Use Cases and Reflections
-[Describe how AI tools were used during the development process and their impact on the project.]
+## Frontend
+* HTML5
+* CSS3
+* Bootstrap / Bootswatch
+* JavaScript
 
-Testing Summary
-Manual Testing
-[Summarize the results of manual testing, including devices, browsers, and features tested.]
+## Tools
+* Crispy forms
+* Whitenoise
 
-Automated Testing
-[Summarize automated testing results, including tools and frameworks used.]
+# AI Assistance in Building Delim
 
-Upcoming Features
-[List features you plan to implement in future updates.]
+AI was a valuable partner throughout the development of **Delim**, assisting in various areas from code creation to debugging and testing. Here’s a more detailed look at the contributions AI made:
+
+## 1. **Code Creation:**
+   - **Initial Functionality:**
+     One of the first areas where AI was instrumental was in the creation of the user authentication system. When we started with Django, I wasn’t sure how to integrate secure user logins, so I turned to AI for guidance. It provided a clear, step-by-step explanation on setting up Django-Allauth for user authentication, including the necessary code snippets. This saved me time by providing a solid foundation for user registration and login systems.
+   
+   - **Inventory Management Feature:**
+     For the core functionality of the app, which is tracking kitchen inventory, AI helped in structuring the database models. I wasn’t sure about the best way to design the database schema, especially for handling expiry dates and quantities. AI recommended the most efficient approach, helping me create a **Product** model that was simple, effective, and easy to scale in the future. It also suggested ways to manage database queries to pull relevant items based on expiration dates, which was crucial for the app’s core features.
+   
+   - **UI Layout and Design Elements:**
+     I wanted the UI to be clean, simple, and intuitive. AI provided suggestions on HTML structure and it helped me come up with a simple, elegant layout that was responsive and easy to navigate. Later, it assisted with fine-tuning the CSS for the morphing gradient background and animated logo intro that were part of the design.
+
+## 2. **Debugging:**
+   - **Identifying Errors in Backend Logic:**
+     At one point, I ran into an issue where the app wasn’t correctly calculating the remaining shelf life of certain items in the inventory. I spent a while trying to figure it out, but when I shared the code with AI, it quickly identified a logical error in the way expiration dates were being compared. AI suggested a more robust way to handle date comparisons, which led to the correct results and smoother functionality.
+   
+   - **Front-End Bugs:**
+     Another memorable debugging moment occurred when I had a bug that caused the background gradient to flicker in some browsers. I wasn’t sure what was causing this issue, but when I shared the problem with AI, it recommended using a fallback gradient method to ensure better browser compatibility. That suggestion fixed the flickering problem, and the gradient effect was consistent across different devices and browsers.
+
+   - **Optimizing Queries and Performance:**
+     As the app started growing, I noticed some queries taking too long to execute. I consulted AI on how to optimize database queries, particularly with filtering expired items. AI recommended using **select_related** for database joins and **values_list** for retrieving specific columns, which significantly improved query performance and reduced loading times.
+
+## 3. **Unit Test Creation:**
+   - **Creating Test Cases:**
+     Early on, I wasn’t sure where to begin with unit testing, so I asked AI to guide me through creating tests for the core functionalities. For example, I needed to test the expiration date logic, but wasn’t confident in how to set up the tests. AI helped by suggesting test cases that covered scenarios like adding items with future expiration dates, updating expiration dates, and checking which items should be flagged as expired. It even provided a sample test suite for the model, which I used as a template to write additional tests.
+   
+   - **Test Automation Suggestions:**
+     Another time, I ran into an issue with automating the tests. I didn’t know how to integrate the **Django TestCase** framework with the custom user model I had set up for authentication. AI quickly pointed me to Django’s documentation and gave me a sample test that covered user login and item creation. With its help, I could easily ensure that critical workflows, like logging in and managing inventory, were being properly tested.
+   
+   - **Edge Case Testing:**
+     One specific instance where AI was particularly helpful was when I was unsure about edge cases, like handling inventory items with invalid expiration dates or quantities. AI provided detailed examples of how to test such edge cases and write more comprehensive tests. I learned how to test for null values, invalid data, and boundary conditions, which significantly improved the robustness of my testing process.
+
+## Overall Impact:
+   - **Efficiency and Speed:**
+     AI helped streamline development by automating repetitive tasks, such as creating boilerplate code, handling common debugging issues, and generating unit tests. For example, when I was trying to create the "inventory update" feature, AI saved me hours of work by suggesting common patterns for form handling and database updates in Django.
+   
+   - **Improved Code Quality:**
+     With AI’s suggestions, my code became more efficient and maintainable. For example, I used AI’s advice to refactor redundant code and optimize functions, which not only made the app perform better but also made it easier for future updates.
+   
+   - **Confidence in Best Practices:**
+     AI ensured that I followed best practices in areas like security (ensuring that sensitive data was properly handled), accessibility (helping me implement screen reader-friendly elements), and user experience (offering UI suggestions that focused on clarity and simplicity).
+
+AI has played a central role in helping me develop **Delim** by providing quick solutions, enhancing the overall quality of the app, and speeding up the development process. The collaboration has allowed me to focus on the creative and strategic aspects of the project, while leaving the repetitive or complex tasks to be handled efficiently by AI.
+
+
+
+
+
+
+# Manual Testing
+delim has been subjected to extensive manual testing across multiple devices by helpful friends and family memebers. delim has also been subjected to rigorous validation tests inclduing; HTML, CSS, JavaScript and Google Lighthouse.
+
+An example of manual testing leading to the betterment of the application was the discovery of a 403 error caused by the user pressing the sign in button after a browser had already run an autosubmit on the users credentials, this was circumvented by applying a custom script to disable the sign in button for a brief period after being pressed. 
+
+<img src="readme images/delim readme resources/validation/cssvalid.png" alt="css validation" width=500>
+<img src="readme images/delim readme resources/validation/dashhtmlvalid.png" alt="html validation" width=500>
+<img src="readme images/delim readme resources/validation/lighthouse.png" alt="lighthouse validation" width=500>
+
+
+
+# Automated Testing
+A comprehensive suite of automated unit tests were created for delim. Ai was instrumental in creating these tests. This was achieved by carefully exposing AI to the various mechanics and relationships between different pices of code in the application in order to create bespoke and robust unit tests to be run on the application. a detailed breakdown of the automated testing is presented below:
+
+## views testing
+
+### 1. Item Details View Test
+**Purpose:** Verifies that the application correctly returns detailed information about a specific inventory item via the item-details API endpoint. This test checks the functionality of displaying inventory item data, such as name, quantity, category, expiry date, and associated user.  
+**Importance:** Ensures that users can access accurate and detailed information about inventory items, which is vital for tracking the status and expiry of ingredients.
+
+### 2. Index View Test
+**Purpose:** Confirms that the application’s home page (index) correctly includes a random quote for the user, ensuring dynamic content is presented as expected.  
+**Importance:** This test helps verify that the home page renders correctly with the expected content, which contributes to the overall user experience and engagement.
+
+### 3. Dashboard View Test
+**Purpose:** Ensures that the dashboard view loads properly with all relevant context, including inventory items and those nearing expiration. It also verifies that logged-in users see the correct data related to their inventory.  
+**Importance:** The dashboard serves as a critical overview of a user’s pantry, so ensuring it is populated with the correct information is vital to maintaining the app’s functionality and usefulness.
+
+### 4. Sign-Up View Test
+**Purpose:** Tests the sign-up process for new users, both for rendering the sign-up form and handling form submissions. It verifies that a new user can successfully register and that invalid form submissions are appropriately handled.  
+**Importance:** User registration is fundamental to personalizing the app experience. This test ensures the app correctly handles new user creation and authentication processes.
+
+### 5. Add Item View Test
+**Purpose:** Verifies the functionality of the form used to add new items to the inventory, including both the display of the form and the successful addition of new items upon form submission.  
+**Importance:** This test ensures that users can correctly add items to their inventory, a core feature of the app. By verifying the form submission process, it helps ensure that the inventory management system works as expected.
+
+### 6. Edit Item View Test
+**Purpose:** Checks that users can edit existing inventory items by modifying details such as quantity and expiration date. It ensures that changes are properly saved and reflected in the database.  
+**Importance:** Inventory management involves updating records regularly, so this test is crucial for ensuring that users can efficiently modify their items as needed.
+
+### 7. Delete Item View Test
+**Purpose:** Tests the ability of the app to delete inventory items and confirms that the item is actually removed from the database after deletion.  
+**Importance:** Deleting items from the inventory is a key function to keep the system up-to-date. This test ensures that the app performs this action correctly and prevents users from seeing outdated or irrelevant data.
+
+## Models Testing
+### 1. InventoryItem Model Tests
+
+### Test: test_string_representation
+**Purpose:** Verifies that the string representation of an InventoryItem correctly returns the item's name.  
+**Importance:** This test ensures that when we call `str()` on an InventoryItem instance, it returns a readable and meaningful value (in this case, the name of the item). This is important for displaying the inventory items in the user interface and debugging.
+
+### Test: test_default_unit
+**Purpose:** Confirms that the default unit for an item is set to 'u' (unit), which is the default if the user doesn't specify a unit.  
+**Importance:** Ensures that the system provides a default value for the unit field, preventing errors or empty values when this field is not provided by the user. This helps maintain consistency in the data.
+
+### Test: test_quantity_validation
+**Purpose:** Verifies that the quantity field is properly validated and that values outside the acceptable range (less than 0 or greater than 1000) raise a `ValidationError`.  
+**Importance:** Ensures that the app prevents the creation of inventory items with invalid quantities. This maintains data integrity and avoids issues such as negative or excessively large quantities, which would be unrealistic for an inventory management system.
+
+### Test: test_category_relationship
+**Purpose:** Confirms that an InventoryItem correctly links to its Category, verifying the integrity of the foreign key relationship.  
+**Importance:** This test ensures that the InventoryItem model correctly references the Category model, which is important for organizing inventory items by category. It verifies the integrity of database relationships, ensuring items are associated with valid categories.
+
+### Test: test_expiry_date_can_be_null
+**Purpose:** Verifies that the expiry_date field in the InventoryItem model can be null, allowing items that do not have an expiry date (such as long-lasting or non-perishable goods).  
+**Importance:** This test ensures flexibility in managing items with varying expiration requirements. Items that don't expire should be handled appropriately without throwing errors or requiring an unnecessary date.
+
+### 2. Category Model Tests
+
+### Test: test_string_representation
+**Purpose:** Verifies that the string representation of the Category model correctly returns the category's name.  
+**Importance:** This test ensures that when we call `str()` on a Category instance, it returns a meaningful value (in this case, the name of the category). This is important for displaying category names throughout the application.
+
+### Test: test_unique_name
+**Purpose:** Ensures that the names of categories are unique, meaning there cannot be multiple categories with the same name.  
+**Importance:** This test maintains data integrity by preventing duplicate categories. It ensures that users can create categories without confusion and maintain a clean and organized list of categories.
+
+### Test: test_plural_verbose_name
+**Purpose:** Verifies that the plural name for the Category model is correctly set to "Categories".  
+**Importance:** This test ensures that the `verbose_name_plural` attribute is correctly configured in the model's metadata, ensuring proper pluralization is displayed in the Django admin and other views when dealing with multiple categories.
+
+## Forms Testing
+
+### 1. UserRegisterForm Tests
+
+### Test: test_valid_form
+**Purpose:** Verifies that the UserRegisterForm is valid when proper input is provided (e.g., a valid username, email, and matching passwords).  
+**Importance:** Ensures that users can successfully register with valid data, thus facilitating smooth user onboarding. This test ensures that the registration process works correctly and that the form enforces necessary constraints, such as requiring matching passwords.
+
+### Test: test_password_mismatch
+**Purpose:** Verifies that the UserRegisterForm becomes invalid if the passwords provided in the password1 and password2 fields do not match.  
+**Importance:** This test prevents users from entering inconsistent password values, which is a critical feature for security and proper user account creation. By ensuring the password fields match, it reduces the likelihood of user confusion and potential account access issues.
+
+### 2. InventoryItemForm Tests
+
+### Test: test_valid_form
+**Purpose:** Verifies that the InventoryItemForm is valid when all required fields are correctly filled out (e.g., name, quantity, unit, category, and expiry date).  
+**Importance:** This test ensures that users can successfully add new inventory items when the form is properly filled. It checks that the form’s required fields are being properly validated and that the system behaves as expected when valid input is provided.
+
+### Test: test_invalid_form_quantity_out_of_bounds
+**Purpose:** Verifies that the InventoryItemForm is invalid if the quantity is outside the acceptable range (less than 0 or greater than 1000).  
+**Importance:** This test ensures that the quantity field respects the business logic constraints (e.g., no negative quantities or overly large values). It is crucial for preventing errors and maintaining data integrity in the application, especially since inventory systems require realistic and accurate quantities.
+
+### Test: test_invalid_form_both_category_and_new_category
+**Purpose:** Verifies that the InventoryItemForm is invalid if both the category and new_category fields are provided simultaneously.  
+**Importance:** This test ensures that the form enforces proper logic when dealing with categories. If a new category is specified, the category field should not be filled out. This prevents conflicting data and ensures that inventory items are either assigned to an existing category or a new category is created as needed, but not both.
+
+
+# Upcoming Features
+## delim has the scope for a wealth of features that are planned to be implemented in the near future, these features include:
+
+* integrated recpie API to suggest recipe ideas based on expiring goods, allowing users to get suggestions on easy ways to use expiring goods and reduce their waste.
+
+* A data display dashboard showing items the user has allowed to expire, giving real feedback on how the user can improve their waste management. 
+
+* The ability to add items to inventory by use of barcode scanning to streamline the process of populating the users inventory
+
+* multi user support, I would like to allow multiple users to have access to the same inventory, opening up the application to household use.
+
+
+
+
 
