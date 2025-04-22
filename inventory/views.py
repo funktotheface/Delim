@@ -113,6 +113,10 @@ class EditItem(LoginRequiredMixin, UpdateView):
     template_name = 'inventory/add_item.html'
     success_url = reverse_lazy('dashboard')
 
+    def get_queryset(self):
+        return InventoryItem.objects.filter(user=self.request.user)
+
+
     def form_valid(self, form):
         new_category_name = form.cleaned_data.get('new_category')
         if new_category_name:
@@ -129,6 +133,9 @@ class DeleteItem(LoginRequiredMixin, DeleteView):
     template_name = 'inventory/delete_item.html'
     success_url = reverse_lazy('dashboard')
     context_object_name = 'item'
+
+    def get_queryset(self):
+        return InventoryItem.objects.filter(user=self.request.user)
     
 
     def form_valid(self, form):
