@@ -43,7 +43,7 @@ Upcoming Features
 
 ## UX Design Process
 ### User Stories
-I based my design around some core User Stories, the goal was to provide immediate access to the core functionality of the application in a smooth and user firnedly manner, while being aesthetically pleasing and unitrusive.
+I based my design around some core User Stories, the goal was to provide immediate access to the core functionality of the application in a smooth and user friendly manner, while being aesthetically pleasing and non intrusive.
 
 [Github User Stories Project Board](https://github.com/users/funktotheface/projects/7/views/1)
 
@@ -66,7 +66,7 @@ Accessibility was a key focus during the development of Delim, ensuring the app 
 * The user interface and layout were intentionally designed to be simple and self-explanatory, minimizing cognitive load and making navigation intuitive for all users.
 
 ## 2.Serene Aesthetic
-* A calm, muted blue color scheme was chosen to create a serene and undistracting experience, aligning with the app’s goal of providing a stress-free tool for kitchen organization.
+* A calm, muted blue color scheme was chosen to create a serene and non distracting experience, aligning with the app’s goal of providing a stress-free tool for kitchen organization.
 
 ## 3. Screen Reader Compatibility
 * HTML accessibility features, such as ARIA labels, were implemented to ensure the app is fully functional with screen readers, improving usability for visually impaired users.
@@ -93,7 +93,7 @@ The design of **Delim** is centered on creating a minimalist, user-friendly expe
 
 ## Color Scheme  
 - A muted blue color palette was chosen to evoke a calm and serene atmosphere.  
-- The color scheme balances an unoffending level of contrast while ensuring that key features remain distinguishable, contributing to a pleasant and stress-free user experience.  
+- The color scheme balances an inoffensive level of contrast while ensuring that key features remain distinguishable, contributing to a pleasant and stress-free user experience.  
 
 <img src="readme images/palette (2).png" alt="delim color scheme" width="500">
 
@@ -126,10 +126,10 @@ These design choices work together to create an unintimidating and enjoyable use
    - Each time the user visits the home screen, a random humorous or motivational quote is displayed to add a touch of fun to their experience.  This is achieved by fetching a random item from a json file each time the page is loaded.
 
 - **Animated Logo Intro Overlay:**  
-   - A sleek, animated site logo is presented on an introductory overlay, setting a polished and professional tone. This is created by embedding an svg into the html and animating it via CSS, JavaScript is also used to ensure that the animation is presented as an overlay to the page content, and that it only plays out on the first time a user vists the page per browsing session, this is to make sure users arent forced to watch a reptative animation while navigating the site. 
+   - A sleek, animated site logo is presented on an introductory overlay, setting a polished and professional tone. This is created by embedding an svg into the HTML and animating it via CSS, JavaScript is also used to ensure that the animation is presented as an overlay to the page content, and that it only plays out on the first time a user visits the page per browsing session, this is to make sure users aren't forced to watch a repetitive animation while navigating the site. 
 
 - **Morphing Gradient Background:**  
-   - The app features a dynamic, morphing gradient background that enhances visual appeal without detracting from usability.  This was achieved by using a system of html elements and CSS manipulation. The feature does not function as a traditonal background and as such presented its own obstacles such as sizing and layering. Z index had to be taken into account for this feature. While it is not perfectly implemented I am excited to continbue devloping this feature and refining its execution. 
+   - The app features a dynamic, morphing gradient background that enhances visual appeal without detracting from usability.  This was achieved by using a system of HTML elements and CSS manipulation. The feature does not function as a traditional background and as such presented its own obstacles such as sizing and layering. Z index had to be taken into account for this feature. While it is not perfectly implemented I am excited to continue developing this feature and refining its execution. 
 
 - **Mobile-Friendly Design:**  
    - Fully responsive UI optimized for both desktop and mobile devices.  
@@ -334,7 +334,7 @@ AI has played a central role in helping me develop **Delim** by providing quick 
 
 
 # Manual Testing
-delim has been subjected to extensive manual testing across multiple devices by helpful friends and family memebers. delim has also been subjected to rigorous validation tests inclduing; HTML, CSS, JavaScript and Google Lighthouse.
+delim has been subjected to extensive manual testing across multiple devices by helpful friends and family members. delim has also been subjected to rigorous validation tests including; HTML, CSS, JavaScript and Google Lighthouse.
 
 An example of manual testing leading to the betterment of the application was the discovery of a 403 error caused by the user pressing the sign in button after a browser had already run an autosubmit on the users credentials, this was circumvented by applying a custom script to disable the sign in button for a brief period after being pressed. 
 
@@ -361,7 +361,7 @@ An example of manual testing leading to the betterment of the application was th
 
 
 # Automated Testing
-A comprehensive suite of automated unit tests were created for delim. Ai was instrumental in creating these tests. This was achieved by carefully exposing AI to the various mechanics and relationships between different pices of code in the application in order to create bespoke and robust unit tests to be run on the application. a detailed breakdown of the automated testing is presented below:
+A comprehensive suite of automated unit tests were created for delim. Ai was instrumental in creating these tests. This was achieved by carefully exposing AI to the various mechanics and relationships between different pieces of code in the application in order to create bespoke and robust unit tests to be run on the application. a detailed breakdown of the automated testing is presented below:
 
 ## views testing
 
