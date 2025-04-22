@@ -342,6 +342,22 @@ An example of manual testing leading to the betterment of the application was th
 <img src="readme images/delim readme resources/validation/dashhtmlvalid.png" alt="html validation" width=500>
 <img src="readme images/delim readme resources/validation/lighthouse.png" alt="lighthouse validation" width=500>
 
+| Feature Tested                | Steps Taken                                                                 | Expected Result                      | Actual Result                     | Pass/Fail |
+|------------------------------|------------------------------------------------------------------------------|--------------------------------------|-----------------------------------|-----------|
+| User Registration            | Submit form with valid credentials                                          | Redirect to dashboard                | Success message and redirect      | ✅        |
+| User Registration – missing password | Leave password blank                                                 | Show validation error                | Form displays error correctly     | ✅        |
+| Login                        | Enter valid credentials                                                     | Redirect to dashboard                | Success                           | ✅        |
+| Login – incorrect credentials| Enter wrong password                                                        | Show error message                   | Correct error message displayed   | ✅        |
+| Add Item                     | Fill form with valid name, category, quantity, expiry date                  | Item appears on dashboard            | Item added successfully           | ✅        |
+| Add Item – past expiry date  | Use an expiry date in the past                                              | Allow submission and flag as expired   | Item accepted and displayed as expired                      | ✅     |
+| Add Item – blank name        | Submit form with name field empty                                           | Show validation error                | Validation triggered correctly    | ✅        |
+| Edit Item – own item         | Click "Edit" on item user owns                                              | Editable form appears                | Form loads and updates item       | ✅        |
+| Edit Item – other user’s item| Try editing someone else's item via URL                                     | Redirect or 404 error                | 404 page shown                    | ✅        |
+| Delete Item – own item       | Click delete on owned item                                                  | Confirm and delete                   | Item deleted successfully         | ✅        |
+| Delete Item – other user's item| Try deleting someone else's item                                         | Redirect or error shown              | 404 page shown                    | ✅        |
+| Dashboard view               | Log in and view dashboard                                                   | See only your items                  | Other users' data not visible     | ✅        |
+| Category creation            | Add new category in "Add Item" form                                         | New category created                 | Appears in dropdown               | ✅        |
+| Form resubmission bug        | Rapidly click login/sign-up buttons                                         | Prevent double submission            | Button disables after click       | ✅        |
 
 
 # Automated Testing
